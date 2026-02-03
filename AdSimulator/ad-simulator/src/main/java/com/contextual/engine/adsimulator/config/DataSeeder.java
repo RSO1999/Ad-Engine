@@ -31,12 +31,12 @@ public class DataSeeder implements CommandLineRunner {
         }
         System.out.println("--- Seeding database with scalable taxonomy ---");
 
-        // 1. Create Categories
+        // Create Categories
         Category sports = categoryRepository.save(new Category("Sports"));
         Category tech = categoryRepository.save(new Category("Technology"));
         Category travel = categoryRepository.save(new Category("Travel"));
 
-        // 2. Create Keywords and associate them with Categories
+        // Create Keywords and associate them with Categories
         keywordRepository.saveAll(List.of(
                 new Keyword("sports", sports), new Keyword("game", sports), new Keyword("league", sports),
                 new Keyword("team", sports), new Keyword("soccer", sports), new Keyword("running", sports),
@@ -49,7 +49,7 @@ public class DataSeeder implements CommandLineRunner {
                 new Keyword("travel", travel), new Keyword("vacation", travel), new Keyword("beach", travel),
                 new Keyword("resort", travel), new Keyword("hotel", travel), new Keyword("flight", travel)));
 
-        // 3. Create Ads and associate them with Categories
+        // Create Ads and associate them with Categories
         AdCreative nikeAd = new AdCreative();
         nikeAd.setName("Nike Pegasus Running Shoes");
         nikeAd.setImageUrl(

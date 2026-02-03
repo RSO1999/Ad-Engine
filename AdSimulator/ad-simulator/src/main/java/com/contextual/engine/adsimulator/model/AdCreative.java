@@ -17,5 +17,5 @@ public class AdCreative {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
-    private Category category; // <-- THIS IS THE CRITICAL CHANGE
+    private Category category;
 }

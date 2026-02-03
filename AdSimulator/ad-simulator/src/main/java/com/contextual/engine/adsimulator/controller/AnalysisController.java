@@ -22,7 +22,7 @@ public class AnalysisController {
     @PostMapping("/analyze")
     public ResponseEntity<AnalysisResponse> analyzeUrl(@RequestBody AnalysisRequest request) {
         return analysisService.analyze(request)
-                .map(ResponseEntity::ok) // If response is present, wrap in a 200 OK
-                .orElse(ResponseEntity.notFound().build()); // If empty, return a 404 Not Found
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 }
