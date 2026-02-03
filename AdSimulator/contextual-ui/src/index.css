@@ -1,0 +1,22 @@
+/* src/index.css */
+
+:root {
+  --background-primary: #121212;
+  --text-primary: #ffffff;
+
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  background-color: var(--background-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+}

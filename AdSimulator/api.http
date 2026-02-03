@@ -1,0 +1,7 @@
+### Analyze a URL
+POST http://localhost:8080/api/analyze
+Content-Type: application/json
+
+{
+  "url": "https://www.express.co.uk/life-style/food/2141394/how-to-peel-boiled-eggs-easier"
+}
