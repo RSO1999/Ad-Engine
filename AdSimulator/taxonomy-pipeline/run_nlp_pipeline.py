@@ -7,18 +7,18 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.cluster import KMeans
 import spacy
 from tqdm import tqdm
-from sqlalchemy import create_engine, text # <-- For connecting to MySQL
+from sqlalchemy import create_engine, text # For connecting to MySQL
 
 # --- Database Configuration ---
-# IMPORTANT: Use the same credentials as your Spring Boot app
+# Same credentials as Spring Boot app
 DB_USER = "ad_user"
-DB_PASS = "root" # <-- MAKE SURE THIS IS YOUR CORRECT PASSWORD
+DB_PASS = "root" # MYSQL DB PASSWORD
 DB_HOST = "localhost"
 DB_PORT = "3306"
 DB_NAME = "ad_taxonomy_db"
 
-# --- Phase 2: Data Ingestion ---
-print("--- Phase 2: Loading 20 Newsgroups Dataset ---")
+# --- Data Ingestion ---
+print("--- Loading 20 Newsgroups Dataset ---")
 try:
     newsgroups_data = fetch_20newsgroups(subset='all', remove=('headers', 'footers', 'quotes'))
     documents = newsgroups_data.data
@@ -26,11 +26,11 @@ except Exception as e:
     print(f"Error loading dataset: {e}")
     sys.exit(1)
 print(f"Successfully loaded {len(documents)} documents.")
-print("--- Phase 2: Complete ---")
+print("--- Loading 20 Newsgroups Dataset Complete ---")
 
 
-# --- Phase 3: NLP Pre-processing ---
-print("\n--- Phase 3: Starting NLP Pre-processing ---")
+# --- NLP Pre-processing ---
+print("\n--- Starting NLP Pre-processing ---")
 try:
     nlp = spacy.load("en_core_web_sm", disable=['parser', 'ner'])
     processed_documents = []
@@ -40,10 +40,10 @@ try:
 except Exception as e:
     print(f"Error during pre-processing: {e}")
     sys.exit(1)
-print("--- Phase 3: Complete ---")
+print("--- NLP Pre-processing Complete ---")
 
 
-# --- Phase 4: Vectorization (TF-IDF) ---
+# --- Vectorization (TF-IDF) ---
 print("\n--- Phase 4: Vectorizing documents with TF-IDF ---")
 try:
     vectorizer = TfidfVectorizer(max_df=0.5, min_df=5, ngram_range=(1,2))
@@ -53,11 +53,11 @@ try:
 except Exception as e:
     print(f"Error during vectorization: {e}")
     sys.exit(1)
-print("--- Phase 4: Complete ---")
+print("--- Vectorization Complete ---")
 
 
-# --- Phase 5: Clustering (K-Means) ---
-print("\n--- Phase 5: Clustering documents with K-Means ---")
+# --- Clustering (K-Means) ---
+print("\n--- Clustering documents with K-Means ---")
 try:
     num_clusters = 20
     kmeans = KMeans(n_clusters=num_clusters, random_state=42, n_init='auto')
@@ -67,17 +67,17 @@ try:
 except Exception as e:
     print(f"Error during clustering: {e}")
     sys.exit(1)
-print("--- Phase 5: Complete ---")
+print("--- Clustering documents with K-Means Complete ---")
 
 
-# --- Phase 6: Storing to Staging Database ---
-print("\n--- Phase 6: Saving discovered topics to MySQL staging tables ---")
+# --- Storing to Staging Database ---
+print("\n--- Saving discovered topics to MySQL staging tables ---")
 try:
-    # Create the database connection string
+    # Creates the database connection string
     db_url = f"mysql+mysqlconnector://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
     engine = create_engine(db_url)
 
-    # --- Create Staging Tables (if they don't exist) ---
+    # --- Creates Staging Tables (if they don't exist) ---
     with engine.connect() as connection:
         print("Creating staging tables (if they don't exist)...")
         connection.execute(text("""
@@ -100,7 +100,7 @@ try:
         print("Clearing old data from staging tables...")
         connection.execute(text("DELETE FROM staged_keywords;"))
         connection.execute(text("DELETE FROM staged_categories;"))
-        connection.commit() # Make sure the deletes are saved
+        connection.commit() # Saves the deletes
 
     # --- Insert the Discovered Clusters and Keywords ---
     print("Inserting new data into staging tables...")
