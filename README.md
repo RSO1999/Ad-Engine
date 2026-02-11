@@ -48,7 +48,7 @@ A full-stack system that analyzes webpage content and serves relevant ads **with
 
 ### Results
 
-* Classification accuracy improved from ~40% (pure AI) → **90%+** with hybrid scoring
+* Classification accuracy improved with hybrid scoring
 * New articles: <500ms response
 * Cached articles: **<50ms** response
 
