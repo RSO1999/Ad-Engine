@@ -11,10 +11,11 @@ A full-stack system that analyzes webpage content and serves relevant ads **with
 * **HTML Processing:** Jsoup
 * **Performance:** Spring `@Cacheable` for sub-50ms cached responses
 
-Project Structure
-Ad-Simulator/ad-simulator – Spring Boot backend and AnalysisService logic
-Ad-Simulator/contextual-ui – React frontend interface
-Ad-Simulator/taxonomy-pipeline – Python NLP pipeline and database population scripts
+###Project Structure
+
+* Ad-Simulator/ad-simulator – Spring Boot backend and AnalysisService logic
+* Ad-Simulator/contextual-ui – React frontend interface
+* Ad-Simulator/taxonomy-pipeline – Python NLP pipeline and database population scripts
 
 ### How It Works
 
