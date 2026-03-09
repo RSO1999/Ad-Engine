@@ -12,7 +12,7 @@ from sqlalchemy import create_engine, text # For connecting to MySQL
 # --- Database Configuration ---
 # Same credentials as Spring Boot app
 DB_USER = "ad_user"
-DB_PASS = "root" # MYSQL DB PASSWORD
+DB_PASS = "newPass" # New MYSQL DB PASSWORD
 DB_HOST = "localhost"
 DB_PORT = "3306"
 DB_NAME = "ad_taxonomy_db"
